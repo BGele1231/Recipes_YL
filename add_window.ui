@@ -57,7 +57,7 @@ border-radius: 15px;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../Downloads/plus-lg 9.png</normaloff>../../../Downloads/plus-lg 9.png</iconset>
+       <normaloff>pictures/plus-lg 9.png</normaloff>pictures/plus-lg 9.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -139,7 +139,7 @@ color: rgb(255, 255, 255);</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../Downloads/bold plus.png</normaloff>../../../Downloads/bold plus.png</iconset>
+       <normaloff>pictures/bold plus.png</normaloff>pictures/bold plus.png</iconset>
      </property>
     </widget>
    </widget>
@@ -239,7 +239,7 @@ border-radius: 15px;</string>
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../../Downloads/trash3 1.png</normaloff>../../../Downloads/trash3 1.png</iconset>
+     <normaloff>pictures/trash3 1.png</normaloff>pictures/trash3 1.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -267,7 +267,7 @@ border-radius: 15px;</string>
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>../../../Downloads/check2 1.png</normaloff>../../../Downloads/check2 1.png</iconset>
+     <normaloff>pictures/check2 1.png</normaloff>pictures/check2 1.png</iconset>
    </property>
    <property name="iconSize">
     <size>

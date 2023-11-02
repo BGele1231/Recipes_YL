@@ -13,8 +13,14 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon()"/>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="header">
@@ -100,7 +106,7 @@ border: none;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../Downloads/gear 1.png</normaloff>../../../Downloads/gear 1.png</iconset>
+      <normaloff>pictures/gear 1.png</normaloff>pictures/gear 1.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -128,7 +134,7 @@ border-radius: 15px;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../Downloads/plus-lg 1.png</normaloff>../../../Downloads/plus-lg 1.png</iconset>
+      <normaloff>pictures/plus-lg 1.png</normaloff>pictures/plus-lg 1.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -168,7 +174,7 @@ border-radius: 15px;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../Downloads/search 1 (1).png</normaloff>../../../Downloads/search 1 (1).png</iconset>
+      <normaloff>pictures/search 1 (1).png</normaloff>pictures/search 1 (1).png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -194,7 +200,7 @@ border-radius: 15px;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../Downloads/filter 1 (1).png</normaloff>../../../Downloads/filter 1 (1).png</iconset>
+      <normaloff>pictures/filter 1 (1).png</normaloff>pictures/filter 1 (1).png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -430,7 +436,7 @@ color: rgb(44, 44, 44);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;Leelawadee UI&quot;;</string>
+     <string notr="true">font: 12pt &quot;Leelawadee UI&quot;;</string>
     </property>
     <property name="text">
      <string>Cooking process</string>
@@ -483,7 +489,7 @@ color: rgb(44, 44, 44);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;Leelawadee UI&quot;;</string>
+     <string notr="true">font: 12pt &quot;Leelawadee UI&quot;;</string>
     </property>
     <property name="text">
      <string>Cooking process</string>
@@ -502,7 +508,7 @@ color: rgb(44, 44, 44);</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 16pt &quot;Leelawadee UI&quot;;</string>
+     <string notr="true">font: 12pt &quot;Leelawadee UI&quot;;</string>
     </property>
     <property name="text">
      <string>Cooking process</string>
@@ -511,6 +517,48 @@ color: rgb(44, 44, 44);</string>
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>90</y>
+      <width>1461</width>
+      <height>811</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>header</zorder>
+   <zorder>header_border</zorder>
+   <zorder>recipes</zorder>
+   <zorder>gear</zorder>
+   <zorder>plu_lg</zorder>
+   <zorder>search_line</zorder>
+   <zorder>search_btn</zorder>
+   <zorder>filter_btn</zorder>
+   <zorder>one_page_btn</zorder>
+   <zorder>two_page_btn</zorder>
+   <zorder>three_page_btn</zorder>
+   <zorder>dots_btn</zorder>
+   <zorder>last_page_btn</zorder>
+   <zorder>border_recipe_one</zorder>
+   <zorder>border_recipe_two</zorder>
+   <zorder>border_recipe_three</zorder>
+   <zorder>image_one</zorder>
+   <zorder>image_two</zorder>
+   <zorder>image_three</zorder>
+   <zorder>title_one</zorder>
+   <zorder>text_one</zorder>
+   <zorder>title_two</zorder>
+   <zorder>title_three</zorder>
+   <zorder>text_two</zorder>
+   <zorder>text_three</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
