@@ -14,7 +14,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="QIcon()"/>
+   <iconset theme="QIcon()">
+    <normaloff>../../../.designer/backup</normaloff>../../../.designer/backup</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -209,99 +210,42 @@ border-radius: 15px;</string>
      </size>
     </property>
    </widget>
-   <widget class="QPushButton" name="one_page_btn">
+   <widget class="QPushButton" name="left_page_btn">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>831</y>
+      <x>670</x>
+      <y>830</y>
       <width>14</width>
       <height>29</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 23pt &quot;Leelawadee UI&quot;;
+     <string notr="true">font: 21pt &quot;Leelawadee UI&quot;;
 color:  rgb(44, 44, 44);
 background-color: rgb(255, 255, 255);
 border: 1px solid rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>1</string>
+     <string>&lt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="two_page_btn">
+   <widget class="QPushButton" name="right_page_btn">
     <property name="geometry">
      <rect>
-      <x>671</x>
-      <y>831</y>
-      <width>15</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 23pt &quot;Leelawadee UI&quot;;
-color:  rgb(44, 44, 44);
-background-color: rgb(255, 255, 255);
-border: 1px solid rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>2</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="three_page_btn">
-    <property name="geometry">
-     <rect>
-      <x>696</x>
-      <y>831</y>
-      <width>15</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 23pt &quot;Leelawadee UI&quot;;
-color:  rgb(44, 44, 44);
-background-color: rgb(255, 255, 255);
-border: 1px solid rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>3</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="dots_btn">
-    <property name="geometry">
-     <rect>
-      <x>721</x>
-      <y>831</y>
-      <width>28</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 23pt &quot;Leelawadee UI&quot;;
-color:  rgb(44, 44, 44);
-background-color: rgb(255, 255, 255);
-border: 1px solid rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>...</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="last_page_btn">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>831</y>
+      <x>770</x>
+      <y>830</y>
       <width>33</width>
       <height>29</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 23pt &quot;Leelawadee UI&quot;;
+     <string notr="true">font: 21pt &quot;Leelawadee UI&quot;;
 color:  rgb(44, 44, 44);
 background-color: rgb(255, 255, 255);
 border: 1px solid rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>10</string>
+     <string>&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="border_recipe_one">
@@ -533,20 +477,111 @@ color: rgb(44, 44, 44);</string>
      <string/>
     </property>
    </widget>
+   <widget class="QLabel" name="tags_line_one">
+    <property name="geometry">
+     <rect>
+      <x>125</x>
+      <y>773</y>
+      <width>370</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 15px;
+background-color: rgb(166, 251, 210);
+font: 12pt &quot;Leelawadee UI&quot;;
+padding-left: 20px;
+padding-right: 20px;</string>
+    </property>
+    <property name="text">
+     <string>tags</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tags_line_two">
+    <property name="geometry">
+     <rect>
+      <x>529</x>
+      <y>773</y>
+      <width>370</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 15px;
+background-color: rgb(166, 251, 210);
+font: 12pt &quot;Leelawadee UI&quot;;
+padding-left: 20px;
+padding-right: 20px;</string>
+    </property>
+    <property name="text">
+     <string>tags</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tags_line_three">
+    <property name="geometry">
+     <rect>
+      <x>925</x>
+      <y>773</y>
+      <width>370</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 15px;
+background-color: rgb(166, 251, 210);
+font: 12pt &quot;Leelawadee UI&quot;;
+padding-left: 20px;
+padding-right: 20px;</string>
+    </property>
+    <property name="text">
+     <string>tags</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="tags_line">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>170</y>
+      <width>751</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Leelawadee UI&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="page_box">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>830</y>
+      <width>42</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 21pt &quot;Leelawadee UI&quot;;
+color:  rgb(44, 44, 44);
+background-color: rgb(255, 255, 255);
+border: 1px solid rgb(255, 255, 255);</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+   </widget>
    <zorder>label</zorder>
    <zorder>header</zorder>
    <zorder>header_border</zorder>
    <zorder>recipes</zorder>
    <zorder>gear</zorder>
-   <zorder>plu_lg</zorder>
    <zorder>search_line</zorder>
    <zorder>search_btn</zorder>
    <zorder>filter_btn</zorder>
-   <zorder>one_page_btn</zorder>
-   <zorder>two_page_btn</zorder>
-   <zorder>three_page_btn</zorder>
-   <zorder>dots_btn</zorder>
-   <zorder>last_page_btn</zorder>
+   <zorder>left_page_btn</zorder>
+   <zorder>right_page_btn</zorder>
    <zorder>border_recipe_one</zorder>
    <zorder>border_recipe_two</zorder>
    <zorder>border_recipe_three</zorder>
@@ -559,6 +594,12 @@ color: rgb(44, 44, 44);</string>
    <zorder>title_three</zorder>
    <zorder>text_two</zorder>
    <zorder>text_three</zorder>
+   <zorder>tags_line_one</zorder>
+   <zorder>tags_line_two</zorder>
+   <zorder>tags_line_three</zorder>
+   <zorder>plu_lg</zorder>
+   <zorder>tags_line</zorder>
+   <zorder>page_box</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
