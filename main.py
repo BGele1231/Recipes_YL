@@ -1,4 +1,4 @@
-from addition import AddWindow, middle_color
+from addition import AddWindow, middle_color, main_w_crop
 import sys
 import sqlite3
 import math
@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
 from PyQt5.QtGui import QIcon, QPixmap, QImage
 from PyQt5 import QtCore
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -32,9 +33,9 @@ class MainWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        self.all_pages = [x[0] for x in self.db.cursor().execute("""SELECT id FROM Recipes""").fetchall()]
-        self.pages = self.all_pages[:3]
-        print('ui', self.pages)
+        # self.all_pages = [x[0] for x in self.db.cursor().execute("""SELECT id FROM Recipes""").fetchall()]
+        self.pages = self.all_pages[(self.page - 1) * 3:self.page * 3]
+        print('ui', self.pages, self.all_pages, len(self.all_pages) - len(self.pages) % 3)
         if len(self.pages) % (self.page * 3) == 0:
             self.recipe_one_hide()
             self.recipe_two_hide()
@@ -43,25 +44,25 @@ class MainWindow(QMainWindow):
             self.recipe_two_hide()
             self.recipe_three_hide()
             self.recipe_one_show()
-            self.recipe_fill_id = len(self.pages) - len(self.pages) % 3 + 1
+            self.recipe_fill_id = self.pages[0]
             self.recipe_fill_one()
         elif len(self.pages) % (self.page * 3) == 2:
             self.recipe_three_hide()
             self.recipe_one_show()
             self.recipe_two_show()
-            self.recipe_fill_id = len(self.pages) - len(self.pages) % 3
+            self.recipe_fill_id = self.pages[0]
             self.recipe_fill_one()
-            self.recipe_fill_id = len(self.pages) - len(self.pages) % 3 + 1
+            self.recipe_fill_id = self.pages[1]
             self.recipe_fill_two()
         else:
             self.recipe_one_show()
             self.recipe_two_show()
             self.recipe_three_show()
-            self.recipe_fill_id = len(self.pages) - 2
+            self.recipe_fill_id = self.pages[0]
             self.recipe_fill_one()
-            self.recipe_fill_id = len(self.pages) - 1
+            self.recipe_fill_id = self.pages[1]
             self.recipe_fill_two()
-            self.recipe_fill_id = len(self.pages)
+            self.recipe_fill_id = self.pages[2]
             self.recipe_fill_three()
 
     def recipe_one_hide(self):
@@ -109,18 +110,18 @@ class MainWindow(QMainWindow):
     def recipe_fill_one(self):
         print(self.recipe_fill_id)
         res_recipe = self.db.cursor().execute(f"""SELECT image, title, main_text, tags_color FROM Recipes
-        WHERE id={self.recipe_fill_id + 1}""").fetchall()
-        print(res_recipe)
+        WHERE id={self.recipe_fill_id}""").fetchall()
         self.image_one.setStyleSheet(f'border-radius: 15px;'
                                      # f'background-color: rgb{middle_color(res_recipe[0][0])};'
-                                     f'border-image: url({res_recipe[0][0]})')
-        self.image_one.adjustSize()
+                                     f'border-image: url({main_w_crop(res_recipe[0][0], self.recipe_fill_id)})')
+        # self.image_one.adjustSize()
         # self.image_one.setPixmap(QPixmap(res_recipe[0][0]).scaled(340, 201))
 
         self.title_one.setText(res_recipe[0][1])
-        # self.text_one.setText(res_recipe[0][2])
-        # print(res_recipe[0][-1])
-        self.tags_line_one.setStyleSheet(f'background-color: rgb({res_recipe[0][-1]});'
+        self.text_one.setText(self.db.cursor().execute(f"""SELECT list FROM Ingridients
+                WHERE id IN (SELECT ingridientsId FROM Recipes_Ingridients
+                WHERE recipesId={self.recipe_fill_id})""").fetchall()[0][0])
+        self.tags_line_one.setStyleSheet(f'background-color: rgb{res_recipe[0][-1]};'
                                          'border-radius: 15px;'
                                          'font: 12pt "Leelawadee UI";'
                                          'padding-left: 20px;'
@@ -128,23 +129,26 @@ class MainWindow(QMainWindow):
 
         res_recipe = self.db.cursor().execute(f"""SELECT title FROM Tags
                 WHERE id IN (SELECT tagsId FROM Recipes_Tags 
-                WHERE resipesId={self.recipe_fill_id + 1})""").fetchall()
-        self.tags_line_one.setText('tags:  ' + '  '.join([x[0] for x in res_recipe]))
-        # self.recipe_fill_id += 1
+                WHERE recipesId={self.recipe_fill_id})""").fetchall()
+        if res_recipe:
+            self.tags_line_one.show()
+            self.tags_line_one.setText('tags:  ' + '  '.join([x[0] for x in res_recipe]))
+        else:
+            self.tags_line_one.hide()
 
     def recipe_fill_two(self):
-        print(self.recipe_fill_id)
         res_recipe = self.db.cursor().execute(f"""SELECT image, title, main_text, tags_color FROM Recipes
-        WHERE id={self.recipe_fill_id + 1}""").fetchall()
-        print(res_recipe)
+        WHERE id={self.recipe_fill_id}""").fetchall()
         self.image_two.setStyleSheet(f'border-radius: 15px;'
-                                     f'border-image: url({res_recipe[0][0]})')
-        self.image_two.adjustSize()
+                                     f'border-image: url({main_w_crop(res_recipe[0][0], self.recipe_fill_id)})')
+        # self.image_two.adjustSize()
         # self.image_two.setPixmap(QPixmap(res_recipe[0][0]).scaled(340, 201))
         self.title_two.setText(res_recipe[0][1])
-        # self.text_two.setText(res_recipe[0][2])
+        self.text_two.setText(self.db.cursor().execute(f"""SELECT list FROM Ingridients
+                WHERE id IN (SELECT ingridientsId FROM Recipes_Ingridients
+                WHERE recipesId={self.recipe_fill_id})""").fetchall()[0][0])
 
-        self.tags_line_one.setStyleSheet(f'background-color: rgb({res_recipe[0][-1]});'
+        self.tags_line_two.setStyleSheet(f'background-color: rgb{res_recipe[0][-1]};'
                                          'border-radius: 15px;'
                                          'font: 12pt "Leelawadee UI";'
                                          'padding-left: 20px;'
@@ -152,29 +156,46 @@ class MainWindow(QMainWindow):
 
         res_recipe = self.db.cursor().execute(f"""SELECT title FROM Tags
                         WHERE id IN (SELECT tagsId FROM Recipes_Tags 
-                        WHERE resipesId={self.recipe_fill_id + 1})""").fetchall()
-        self.tags_line_two.setText('tags:  ' + '  '.join([x[0] for x in res_recipe]))
+                        WHERE recipesId={self.recipe_fill_id})""").fetchall()
+        if res_recipe:
+            self.tags_line_two.show()
+            self.tags_line_two.setText('tags:  ' + '  '.join([x[0] for x in res_recipe]))
+        else:
+            self.tags_line_two.hide()
 
     def recipe_fill_three(self):
         res_recipe = self.db.cursor().execute(f"""SELECT image, title, main_text, tags_color FROM Recipes
-        WHERE id={self.recipe_fill_id + 1}""").fetchall()
-        self.image_three.setPixmap(QPixmap(res_recipe[0][0]).scaled(340, 201))
+                WHERE id={self.recipe_fill_id}""").fetchall()
+        self.image_three.setStyleSheet(f'border-radius: 15px;'
+                                     f'border-image: url({main_w_crop(res_recipe[0][0], self.recipe_fill_id)})')
         self.title_three.setText(res_recipe[0][1])
-        # self.text_three.setText(res_recipe[0][2])
+        self.text_three.setText(self.db.cursor().execute(f"""SELECT list FROM Ingridients
+                        WHERE id IN (SELECT ingridientsId FROM Recipes_Ingridients
+                        WHERE recipesId={self.recipe_fill_id})""").fetchall()[0][0])
+
+        self.tags_line_three.setStyleSheet(f'background-color: rgb{res_recipe[0][-1]};'
+                                         'border-radius: 15px;'
+                                         'font: 12pt "Leelawadee UI";'
+                                         'padding-left: 20px;'
+                                         'padding-right: 20px;')
 
         res_recipe = self.db.cursor().execute(f"""SELECT title FROM Tags
-                        WHERE id IN (SELECT tagsId FROM Recipes_Tags 
-                        WHERE resipesId={self.recipe_fill_id})""").fetchall()
-        self.tags_line_three.setText('tags:  ' + '  '.join([x[0] for x in res_recipe]))
+                                WHERE id IN (SELECT tagsId FROM Recipes_Tags 
+                                WHERE recipesId={self.recipe_fill_id})""").fetchall()
+        if res_recipe:
+            self.tags_line_three.show()
+            self.tags_line_three.setText('tags:  ' + '  '.join([x[0] for x in res_recipe]))
+        else:
+            self.tags_line_three.hide()
 
     def searching(self):
         query = self.search_line.text()
-        # print(query)
-        self.pages = self.db.cursor().execute(f"""SELECT id FROM Recipes
-        WHERE title LIKE '%{query}%'""").fetchall()
-        if self.pages:
-            self.pages = self.pages[0]
-        print(self.pages)
+        print(query.capitalize(), 'query')
+        self.all_pages = self.db.cursor().execute(f"""SELECT id FROM Recipes
+        WHERE title LIKE '%{query.lower()}%'""").fetchall()
+        if self.all_pages:
+            self.all_pages = [x[0] for x in self.all_pages]
+        print(self.all_pages, 'searching pages')
         self.initUI()
 
     def left_page(self):

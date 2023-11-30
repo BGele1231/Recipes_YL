@@ -74,10 +74,6 @@ border-radius: 15px;
      <property name="text">
       <string/>
      </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>pictures/plus-lg 9.png</normaloff>pictures/plus-lg 9.png</iconset>
-     </property>
      <property name="iconSize">
       <size>
        <width>93</width>
@@ -110,6 +106,9 @@ color: rgb(44, 44, 44);</string>
      </property>
      <property name="cursorPosition">
       <number>5</number>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QTextEdit" name="main_text">
@@ -146,36 +145,16 @@ color: rgb(44, 44, 44);</string>
      <property name="undoRedoEnabled">
       <bool>true</bool>
      </property>
-    </widget>
-    <widget class="QPushButton" name="add_btn">
-     <property name="geometry">
-      <rect>
-       <x>76</x>
-       <y>460</y>
-       <width>87</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">font: 75 13pt &quot;Leelawadee UI&quot;;
-background-color: rgb(180, 224, 169);
-border-radius: 15px;
-color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>add</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>pictures/bold plus.png</normaloff>pictures/bold plus.png</iconset>
+     <property name="readOnly">
+      <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="add_btn_2">
+    <widget class="QPushButton" name="tags_btn">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>80</x>
        <y>460</y>
-       <width>471</width>
+       <width>571</width>
        <height>30</height>
       </rect>
      </property>
@@ -246,6 +225,9 @@ color: rgb(44, 44, 44);</string>
    <property name="autoFormatting">
     <set>QTextEdit::AutoAll</set>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="source_btn">
    <property name="geometry">
@@ -262,7 +244,7 @@ font: 16pt &quot;Leelawadee UI&quot;;
 border-radius: 15px;</string>
    </property>
    <property name="text">
-    <string>Link</string>
+    <string>Source</string>
    </property>
   </widget>
   <widget class="QPushButton" name="delete_btn">
@@ -294,7 +276,7 @@ border-radius: 15px;</string>
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPushButton" name="commit_btn">
+  <widget class="QPushButton" name="edit_btn">
    <property name="geometry">
     <rect>
      <x>990</x>
@@ -313,7 +295,7 @@ border-radius: 15px;</string>
    </property>
    <property name="icon">
     <iconset>
-     <normaloff>pictures/check2 1.png</normaloff>pictures/check2 1.png</iconset>
+     <normaloff>pictures/pencil 1.png</normaloff>pictures/pencil 1.png</iconset>
    </property>
    <property name="iconSize">
     <size>
@@ -345,13 +327,16 @@ font: 16pt &quot;Leelawadee UI&quot;;</string>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
   </widget>
   <zorder>scrollArea</zorder>
   <zorder>ingr_border</zorder>
   <zorder>ingr_lable</zorder>
   <zorder>ingridients</zorder>
   <zorder>delete_btn</zorder>
-  <zorder>commit_btn</zorder>
+  <zorder>edit_btn</zorder>
   <zorder>cost_line</zorder>
   <zorder>source_btn</zorder>
  </widget>
