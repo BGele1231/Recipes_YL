@@ -1,4 +1,4 @@
-from addition import AddWindow, middle_color, main_w_crop
+from addition import AddWindow, ViewingWindow, main_w_crop
 import sys
 import sqlite3
 import math
@@ -217,11 +217,26 @@ class MainWindow(QMainWindow):
 
     def mousePressEvent(self, event):
         if 125 < event.x() < 495 and 235 < event.y() < 756:
-            self.recipe_id = None
-            self.recipe()
+            print(1)
+            self.recipe_first()
+        if 529 < event.x() < 899 and 235 < event.y() < 756:
+            print(2)
+            self.recipe_second()
+        if 925 < event.x() < 1295 and 235 < event.y() < 756:
+            print(3)
+            self.recipe_third()
 
-    def recipe(self):
-        print('2')
+    def recipe_first(self):
+        self.viewing = ViewingWindow(self.pages[0])
+        self.viewing.show()
+
+    def recipe_second(self):
+        self.viewing = ViewingWindow(self.pages[1])
+        self.viewing.show()
+
+    def recipe_third(self):
+        self.viewing = ViewingWindow(self.pages[2])
+        self.viewing.show()
 
 
 if __name__ == '__main__':

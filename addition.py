@@ -1,7 +1,7 @@
 import sys
 import sqlite3
 from PIL import Image
-from hyperlink import URL
+import os
 
 from PyQt5 import uic  # Импортируем uic
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QFileDialog, QInputDialog, QDialog, QVBoxLayout,
@@ -164,30 +164,37 @@ class ViewingWindow(QDialog):
         self.main_text.setText(res_recipe[0][2])
         self.cost_line.setText(res_recipe[0][4])
 
-        ic = QIcon(self.im)
+        ic = QIcon(res_recipe[0][0])
         self.image_btn.setIcon(ic)
         self.image_btn.setIconSize(QtCore.QSize(579, 321))
         self.image_btn.setStyleSheet(f'border-radius: 15px;'
-                                     f'background-color: rgb{middle_color(self.im)};')
+                                     f'background-color: rgb{middle_color(res_recipe[0][0])};')
         self.ingridients.setText(self.db.cursor().execute(f"""SELECT list FROM Ingridients
                         WHERE id IN (SELECT ingridientsId FROM Recipes_Ingridients
-                        WHERE recipesId={self.recipe_fill_id})""").fetchall()[0][0])
+                        WHERE recipesId={self.recipe_id})""").fetchall()[0][0])
 
-        self.tags_btn.setStyleSheet(f'background-color: rgb{res_recipe[0][-1]};'
+        print(res_recipe[0][3], 'color')
+        self.tags_btn.setStyleSheet(f'background-color: rgb{res_recipe[0][3]};'
                                     'border-radius: 15px;'
                                     'font: 12pt "Leelawadee UI";'
                                     'padding-left: 20px;'
-                                    'padding-right: 20px;')
+                                    'padding-right: 20px;'
+                                    'text-align: left;')
 
         res_recipe = self.db.cursor().execute(f"""SELECT title FROM Tags
                         WHERE id IN (SELECT tagsId FROM Recipes_Tags 
-                        WHERE recipesId={self.recipe_fill_id})""").fetchall()
+                        WHERE recipesId={self.recipe_id})""").fetchall()
         self.tags_btn.setText('tags:  ' + '  '.join([x[0] for x in res_recipe]))
 
+        if not self.source:
+            self.source_btn.hide()
+        else:
+            self.source_btn.show()
         self.source_btn.clicked.connect(self.go_to_source)
+        self.edit_btn.clicked.connect(self.edit_window)
 
     def go_to_source(self):
-        url = URL.from_text("u'" + self.source + "'")
-        utm_source = url.get(u'utm_source')
-        better_url = url.replace(scheme=u'https', port=443)
-        org_url = better_url.click(u'.')
+        os.system(f"start \" \" {self.source}")
+
+    def edit_window(self):
+        pass
