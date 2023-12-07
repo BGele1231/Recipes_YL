@@ -149,7 +149,7 @@ border-radius: 15px;</string>
      <rect>
       <x>336</x>
       <y>118</y>
-      <width>753</width>
+      <width>781</width>
       <height>35</height>
      </rect>
     </property>
@@ -181,32 +181,6 @@ border-radius: 15px;</string>
      <size>
       <width>30</width>
       <height>30</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="filter_btn">
-    <property name="geometry">
-     <rect>
-      <x>1101</x>
-      <y>118</y>
-      <width>45</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">border: 1px solid rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>pictures/filter 1 (1).png</normaloff>pictures/filter 1 (1).png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>45</width>
-      <height>40</height>
      </size>
     </property>
    </widget>
@@ -334,6 +308,9 @@ background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLabel" name="image_three">
@@ -553,7 +530,7 @@ padding-right: 20px;</string>
      <string/>
     </property>
    </widget>
-   <widget class="QSpinBox" name="page_box">
+   <widget class="QLineEdit" name="line_pages">
     <property name="geometry">
      <rect>
       <x>710</x>
@@ -563,13 +540,14 @@ padding-right: 20px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 21pt &quot;Leelawadee UI&quot;;
-color:  rgb(44, 44, 44);
-background-color: rgb(255, 255, 255);
+     <string notr="true">font: 18pt &quot;Leelawadee UI&quot;;
 border: 1px solid rgb(255, 255, 255);</string>
     </property>
-    <property name="minimum">
-     <number>1</number>
+    <property name="text">
+     <string>1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <zorder>label</zorder>
@@ -579,7 +557,6 @@ border: 1px solid rgb(255, 255, 255);</string>
    <zorder>gear</zorder>
    <zorder>search_line</zorder>
    <zorder>search_btn</zorder>
-   <zorder>filter_btn</zorder>
    <zorder>left_page_btn</zorder>
    <zorder>right_page_btn</zorder>
    <zorder>border_recipe_one</zorder>
@@ -599,7 +576,7 @@ border: 1px solid rgb(255, 255, 255);</string>
    <zorder>tags_line_three</zorder>
    <zorder>plu_lg</zorder>
    <zorder>tags_line</zorder>
-   <zorder>page_box</zorder>
+   <zorder>line_pages</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

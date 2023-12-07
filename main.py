@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         self.all_pages = [x[0] for x in self.db.cursor().execute("""SELECT id FROM Recipes""").fetchall()]
         self.pages = self.all_pages[:3]
 
-        self.page_box.setMaximum(math.ceil(len(self.all_pages) / 3))
+        self.line_pages.setText('1')
         self.left_page_btn.clicked.connect(self.left_page)
         self.right_page_btn.clicked.connect(self.right_page)
         self.search_btn.clicked.connect(self.searching)
@@ -191,10 +191,13 @@ class MainWindow(QMainWindow):
     def searching(self):
         query = self.search_line.text()
         print(query.capitalize(), 'query')
-        self.all_pages = self.db.cursor().execute(f"""SELECT id FROM Recipes
-        WHERE title LIKE '%{query.lower()}%'""").fetchall()
-        if self.all_pages:
-            self.all_pages = [x[0] for x in self.all_pages]
+        if query:
+            self.all_pages = self.db.cursor().execute(f"""SELECT id FROM Recipes
+            WHERE title LIKE '%{query.lower()}%'""").fetchall()
+            if self.all_pages:
+                self.all_pages = [x[0] for x in self.all_pages]
+        else:
+            self.all_pages = [x[0] for x in self.db.cursor().execute("""SELECT id FROM Recipes""").fetchall()]
         print(self.all_pages, 'searching pages')
         self.initUI()
 
@@ -202,12 +205,14 @@ class MainWindow(QMainWindow):
         if self.page != 1:
             self.page -= 1
             self.pages = self.all_pages[3 * self.page - 1:]
+            self.line_pages.setText(self.page)
             self.initUI()
 
     def right_page(self):
         if math.ceil(len(self.pages) / 3) != self.page:
             self.page += 1
             self.pages = self.all_pages[3 * self.page - 1:]
+            self.line_pages.setText(self.page)
             self.initUI()
 
     def new_recipe(self):
