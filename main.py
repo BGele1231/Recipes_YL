@@ -3,11 +3,8 @@ import sys
 import sqlite3
 import math
 
-from PyQt5 import uic  # Импортируем uic
+from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
-from PyQt5.QtGui import QIcon, QPixmap, QImage
-from PyQt5 import QtCore
 
 
 class MainWindow(QMainWindow):
@@ -36,11 +33,7 @@ class MainWindow(QMainWindow):
         # self.all_pages = [x[0] for x in self.db.cursor().execute("""SELECT id FROM Recipes""").fetchall()]
         self.pages = self.all_pages[(self.page - 1) * 3:self.page * 3]
         print('ui', self.pages, self.all_pages, len(self.all_pages) - len(self.pages) % 3)
-        if len(self.pages) % (self.page * 3) == 0:
-            self.recipe_one_hide()
-            self.recipe_two_hide()
-            self.recipe_three_hide()
-        elif len(self.pages) % (self.page * 3) == 1:
+        if len(self.pages) % (self.page * 3) == 1:
             self.recipe_two_hide()
             self.recipe_three_hide()
             self.recipe_one_show()

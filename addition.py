@@ -1,13 +1,10 @@
-import sys
 import sqlite3
 from PIL import Image
 import os
 
 from PyQt5 import uic  # Импортируем uic
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QFileDialog, QInputDialog, QDialog, QVBoxLayout,
-                             QColorDialog)
-from PyQt5.QtSql import QSqlDatabase, QSqlTableModel
-from PyQt5.QtGui import QIcon, QPixmap, QImage, QTransform
+from PyQt5.QtWidgets import (QFileDialog, QInputDialog, QDialog, QVBoxLayout, QColorDialog)
+from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore
 
 
@@ -52,7 +49,7 @@ class AddWindow(QDialog):
 
         self.db = sqlite3.connect("recipies.sqlite")
         if self.db.cursor().execute(f"""SELECT id FROM Recipes""").fetchall():
-            self.recipe = len(self.db.cursor().execute(f"""SELECT id FROM Recipes""").fetchall()[-1]) + 1
+            self.recipe = len(self.db.cursor().execute(f"""SELECT id FROM Recipes""").fetchall()[-1]) + 2
             self.db_tags = self.db.cursor().execute(f"""SELECT title FROM Tags""").fetchall()[0]
         else:
             self.recipe = 1
@@ -67,6 +64,8 @@ class AddWindow(QDialog):
         self.add_btn.clicked.connect(self.add_tag)
         self.add_btn_2.clicked.connect(self.choose_tag_color)
         self.commit_btn.clicked.connect(self.submit)
+
+        print(self.recipe, 'iddd')
 
     def choose_image(self):
         self.im, ok_pressed = QFileDialog.getOpenFileName(self, 'Choose a image', '')
@@ -110,8 +109,8 @@ class AddWindow(QDialog):
         cost = self.cost_line.text().rstrip()
         if cost != 'Cost:':
             cost = cost[5:]
-        elif not cost[-1].isdigit():
-            cost += '₽'
+            if not cost[-1].isdigit():
+                cost += '₽'
         if self.ingridients.toPlainText():
             print(self.ingridients.toPlainText(), type(self.ingridients.toPlainText()))
         query = f"""INSERT INTO Recipes (id, image, source, main_text, title, cost, tags_color) 
